@@ -18,19 +18,17 @@ public class PlayerMovement : MonoBehaviour
        if ( Input.GetKey("d") || Input.GetKey("right") )
        {
            // Only executed if condition is met
-           rb.AddForce(sidewaysForce * Time.deltaTime, 0, 0);
+           rb.AddForce(sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
        }
 
        if ( Input.GetKey("a") || Input.GetKey("left") )
        {
            // Only executed if condition is met
-           rb.AddForce(-sidewaysForce * Time.deltaTime, 0, 0);
+           rb.AddForce(-sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
        }
 
-       if ( Input.GetKey("w") || Input.GetKey("up"))
-       {
-           // Only executed if condition is met
-           rb.AddForce(Time.deltaTime, 50, 0);
+       if (rb.position.y < 0) {
+           FindObjectOfType<GameManager>().EndGame();
        }
     }
 }
